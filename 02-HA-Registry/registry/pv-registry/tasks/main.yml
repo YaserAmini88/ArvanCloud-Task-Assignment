@@ -1,0 +1,26 @@
+---
+- name: Create /opt/registry directory
+  file:
+     path: /opt/registry
+     state: directory
+
+- name: Create Registry DIrectory
+  file:
+     path: /data
+     state: directory
+     
+- name: Copy Docker Compose file
+  copy:
+     src: docker-compose.yml
+     dest: /opt/registry/docker-compose.yml
+     force: yes
+
+- name: Stop Compose
+  command: docker compose down
+  args:
+     chdir: /opt/registry
+
+- name: Start Compose
+  command: docker compose up -d
+  args:
+     chdir: /opt/registry

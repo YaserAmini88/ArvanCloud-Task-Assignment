@@ -1,0 +1,7 @@
+---
+- name: Installing HAProxy for Kubernetes Master Nodes
+  hosts: lb
+  become: true
+  remote_user: root
+  roles:
+    - ./lb

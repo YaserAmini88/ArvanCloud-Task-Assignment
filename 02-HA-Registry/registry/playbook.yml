@@ -1,0 +1,7 @@
+---
+- name: Installing Docker Registry
+  hosts: registry
+  become: true
+  remote_user: root
+  roles:
+    - ./pv-registry

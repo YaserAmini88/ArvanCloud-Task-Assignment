@@ -1,0 +1,33 @@
+---
+- name: Create /opt/lb directory
+  file:
+     path: /opt/lb
+     state: directory
+
+     #- name: Set Permission     
+     #file:
+     #path: /var/run/haproxy
+     #state: directory
+     #mode: '0755'
+
+- name: Copy HAProxy configuration file
+  copy:
+     src: haproxy.cfg
+     dest: /opt/lb/haproxy.cfg
+     force: yes
+
+- name: Copy Docker Compose file
+  copy:
+     src: docker-compose.yml
+     dest: /opt/lb/docker-compose.yml
+     force: yes
+
+- name: Stop Compose 
+  command: docker compose down
+  args:
+     chdir: /opt/lb
+
+- name: Start Compose
+  command: docker compose up -d
+  args:
+     chdir: /opt/lb

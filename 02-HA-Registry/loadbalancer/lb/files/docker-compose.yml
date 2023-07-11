@@ -1,0 +1,11 @@
+version: '3'
+services:
+  haproxy:
+    image: haproxy:latest
+    user: root
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 6443:6443
+    restart: always
+
