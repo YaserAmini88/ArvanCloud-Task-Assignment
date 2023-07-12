@@ -23,21 +23,11 @@ spec:
           image: fluent/fluentd-kubernetes-daemonset:v1.15.3-debian-elasticsearch7-1.1
           env:
             - name:  FLUENT_ELASTICSEARCH_HOST
-              value: "elastic-es-http.services.svc.cluster.local"
+              value: "37.32.5.76"
             - name:  FLUENT_ELASTICSEARCH_PORT
               value: "9200"
             - name: FLUENT_ELASTICSEARCH_SCHEME
               value: "http"
-            - name: FLUENT_ELASTICSEARCH_USER
-              valueFrom:
-                secretKeyRef:
-                  name: elastic-cred
-                  key: username
-            - name: FLUENT_ELASTICSEARCH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: elastic-cred
-                  key: password
           resources:
             limits:
               memory: 512Mi

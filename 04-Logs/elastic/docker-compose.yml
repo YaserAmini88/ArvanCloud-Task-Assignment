@@ -1,0 +1,33 @@
+version: "3"
+services:
+  es:
+    image: elastic/elasticsearch:7.17.10
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - node.name=es
+      - cluster.name=elastic
+      - cluster.initial_master_nodes=37.32.5.76
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - transport.publish_host=37.32.5.76
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elastic-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+  kibana:
+    image: elastic/kibana:7.17.10
+    container_name: kibana
+    restart: always
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://37.32.5.76:9200"]'
+
+volumes:
+  elastic-data:

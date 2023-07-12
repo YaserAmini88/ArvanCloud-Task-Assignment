@@ -32,12 +32,12 @@ data:
     </filter>
     <match **>
       @type elasticsearch
-      host "#{ENV['FLUENT_ELASTICSEARCH_HOST'] || 'elastic-es-default.services'}"
+      host "#{ENV['FLUENT_ELASTICSEARCH_HOST'] || '37.32.5.76'}"
       port "#{ENV['FLUENT_ELASTICSEARCH_PORT'] || '9200'}"
-      user "#{ENV['FLUENT_ELASTICSEARCH_USER'] || 'elastic'}"
-      password "#{ENV['FLUENT_ELASTICSEARCH_PASSWORD'] || '9Hd50HA20B3o2F2y6K2obsRR'}"
+      #user "#{ENV['FLUENT_ELASTICSEARCH_USER'] || 'elastic'}"
+      #password "#{ENV['FLUENT_ELASTICSEARCH_PASSWORD'] || '9Hd50HA20B3o2F2y6K2obsRR'}"
       scheme "#{ENV['FLUENT_ELASTICSEARCH_SCHEME'] || 'http'}"
-      index_name kuber
+      index_name kubernetes
       type_name fluentd
       time_key time
       include_timestamp true
