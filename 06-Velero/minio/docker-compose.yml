@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio_data:/data
+    environment:
+            #- MINIO_ACCESS_KEY=190af077-14fb-4703-a82a-8e27300c38db
+            #- MINIO_SECRET_KEY=6490c8d9f26f1fae301bb19208c307d7a9413393d699dba048a43a0614194027
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=MyPassword1367
+      - MINIO_BROWSER=on
+      - MINIO_CONSOLE_ADDRESS=:9001
+    command: server /data
+    restart: always
+
+volumes:
+  minio_data:
